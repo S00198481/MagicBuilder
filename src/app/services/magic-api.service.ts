@@ -12,16 +12,16 @@ export class MagicApiService {
   private _siteURL = "https://api.magicthegathering.io/v1/cards?name="
   constructor(private _http:HttpClient) { }
 
-  getCards(cardName): Observable<MagicResponse> {
-    return this._http.get<MagicResponse>(this._siteURL + cardName)
+  getCards(cardName): Observable<JSON> {
+    return this._http.get<JSON>(this._siteURL + cardName)
     .pipe(
-      tap(data => console.log('MagicData/error' + JSON.stringify(data))
+      tap(data => console.log(data)
       ),
       catchError(this.handleError)
     );
   }
   private handleError(err:HttpErrorResponse) {
-    console.log('MaigicApiService: ' + err.message);
+    console.log('MagicApiService: ' + err.message);
     return Observable.throw(err.message);
   }
 }

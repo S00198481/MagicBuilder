@@ -1,4 +1,4 @@
-import { Card } from "src/app/card-interface"
+import { Card } from './card-interface';
 export interface MagicResponse {
-    cards:Array<Card>;
+    Cards:Array<Card>;
 }
