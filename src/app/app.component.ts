@@ -15,20 +15,53 @@ export class AppComponent {
   cards:any;
   errorMessage:any;
   show:boolean;
+  colour:string;
+  cmc:number;
 
   constructor(private _magicService:MagicApiService) { }
 
   getCards(cardName:string):boolean {
-    {
-    this._magicService.getCards(cardName).subscribe(
-      cards => {
-        this.cards = cards;
-        console.log(cards);
-        console.log(this.cards);
-      },
-      error => this.errorMessage = <any>error
-    );
-  }
+    if (this.colour == "any" && this.cmc == 0) {
+      this._magicService.getCards(cardName, "", 0).subscribe(
+        cards => {
+          this.cards = cards;
+          console.log(cards);
+          console.log(this.cards);
+        },
+        error => this.errorMessage = <any>error
+      );
+    }
+    else if (this.colour != "any" && this.cmc == 0) {
+      this._magicService.getCards(cardName, this.colour, 0).subscribe(
+        cards => {
+          this.cards = cards;
+          console.log(cards);
+          console.log(this.cards);
+        },
+        error => this.errorMessage = <any>error
+      );
+    }
+    else if (this.colour == "any" && this.cmc != 0) {
+      this._magicService.getCards(cardName, "", 0).subscribe(
+        cards => {
+          this.cards = cards;
+          console.log(cards);
+          console.log(this.cards);
+        },
+        error => this.errorMessage = <any>error
+      );
+    }
+    else {
+      this._magicService.getCards(cardName, this.colour, this.cmc).subscribe(
+        cards => {
+          this.cards = cards;
+          console.log(cards);
+          console.log(this.cards);
+        },
+        error => this.errorMessage = <any>error
+      );
+    }
+
     return false;
   }
 
@@ -38,12 +71,12 @@ export class AppComponent {
 
   getColour(chosenColour:string) {
     console.log(chosenColour);
-    return(chosenColour);
+    this.colour=chosenColour;
   }
 
   getCmc(chosenCmc:number) {
     console.log(chosenCmc);
-    return(chosenCmc);
+    this.cmc=chosenCmc;
   }
   
 }

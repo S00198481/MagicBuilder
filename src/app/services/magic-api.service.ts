@@ -11,8 +11,11 @@ export class MagicApiService {
 
   private _siteURL = "https://api.magicthegathering.io/v1/cards?name="
   constructor(private _http:HttpClient) { }
+  colour:string;
+  cmc:number;
 
-  getCards(cardName): Observable<JSON> {
+  getCards(cardName, colour, cmc): Observable<JSON> {
+    //I NEED TO MAKE THIS METHOD KNOW HOW TO REQUEST COLOUR AND NO CMC, NO COLOUR AND CMC, COLOUR AND CMC
     return this._http.get<JSON>(this._siteURL + cardName)
     .pipe(
       tap(data => console.log(data)
