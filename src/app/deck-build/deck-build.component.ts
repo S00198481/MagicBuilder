@@ -9,9 +9,12 @@ import { MagicApiService } from '../services/magic-api.service'
 export class DeckBuildComponent implements OnInit {
 
   constructor(private _magicService:MagicApiService) { }
+  
 
   ngOnInit(): void {
-    deck:Array:JSON;
+    
   }
+  deck:Array<JSON>;
+  show:boolean;
 
 }

@@ -8,11 +8,13 @@
       <button (click)="getCards(cardname.value)" type="submit" class="btn btn-primary">Search</button>
     </div>
   </form>
+  <app-deck-build></app-deck-build>
 
   <div class="row bg-light mt-4 p-4" *ngIf="cards">
-    <div class="col-sm-4" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
-      <p>{{card.name}}</p>
+    <div class="col-sm-4 mt-4" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
       <img src="{{card.imageUrl}}" width="200px">
-      <button (click)="logCard(card)">Log Card</button>
+      <div>
+      <button type="button" class="btn btn-success btn-circle mr-0" (click)="logCard(card)">Add</button>
+      </div>
     </div>
   </div>

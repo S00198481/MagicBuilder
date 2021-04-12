@@ -1,1 +1,50 @@
-<p>deck-build works!</p>
+<button class="btn btn-primary" (click)="show = !show">{{show ? 'Hide' : 'Build A Deck'}}</button>
+<div *ngIf="show" class="mx-auto bg-light clearfix">
+    <div class="row">
+        <p class="mx-auto">Please customise your deck using the settings below and use the search bar to find cards!</p>
+    </div>
+    <div class="float-left">
+        <h2>Deck Colour:</h2>
+
+        <form>
+            <div>
+                <input type="radio" value="white" name="colour" ngModel> White
+                <input type="radio" value="black" name="colour" ngModel> Black
+                <input type="radio" value="red" name="colour" ngModel> Red
+                <input type="radio" value="blue" name="colour" ngModel> Blue
+                <input type="radio" value="green" name="colour" ngModel> Green
+            </div>
+        </form>
+    </div>
+
+
+    <div class="float-right">
+        <h2>Combined Mana Cost:</h2>
+
+        <form>
+            <div>
+                <input type="radio" value="1" name="cmc" ngModel> 1
+                <input type="radio" value="2" name="cmc" ngModel> 2
+                <input type="radio" value="3" name="cmc" ngModel> 3
+                <input type="radio" value="4" name="cmc" ngModel> 4
+                <input type="radio" value="5" name="cmc" ngModel> 5
+                <input type="radio" value="6" name="cmc" ngModel> 6
+                <input type="radio" value="6+" name="cmc" ngModel> 6+
+            </div>
+        </form>
+    </div>
+
+    <br><br><br>
+    <div class="row align-bottom">
+        <button class="mb-0 mx-auto btn btn-success" (click)="applyFilter">Apply Card Filter</button>
+    </div>
+    <br>
+    <div class="row align-bottom">
+        <p class="mx-auto">Number of Cards in Deck = 24/60</p>
+    </div>
+
+
+
+
+
+</div>

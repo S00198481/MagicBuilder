@@ -13,6 +13,7 @@ export class AppComponent {
 
   cards:any;
   errorMessage:any;
+  show:boolean;
 
   constructor(private _magicService:MagicApiService) { }
 
