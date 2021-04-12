@@ -1,15 +1,18 @@
 <div class='container'>
-  <h1>MagicTesting</h1>
+  <div class="row">
+  <h1 class="mx-auto mt-4">MagicTesting</h1>
+  </div>
   <form>
-    <div class="form-group">
+    <div class="form-inline mt-4 justify-content-center">
       <input type='text' name='cardname' class="form-control" #cardname placeholder="Enter Card Name">
+      <button (click)="getCards(cardname.value)" type="submit" class="btn btn-primary">Search</button>
     </div>
-    <button (click)="getCards(cardname.value)" type="submit" class="btn btn-primary">Get Card Details</button>
   </form>
 
   <div class="row bg-light mt-4 p-4" *ngIf="cards">
-    <div class="col-sm-4" *ngFor="let card of this.cards.cards" [cards]="cards">
+    <div class="col-sm-4" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
       <p>{{card.name}}</p>
-      <img src="{{card.imageUrl}}">
+      <img src="{{card.imageUrl}}" width="200px">
+      <button (click)="logCard(card)">Log Card</button>
     </div>
   </div>

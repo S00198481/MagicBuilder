@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MagicApiService } from './services/magic-api.service';
+import { DeckBuildComponent } from './deck-build/deck-build.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DeckBuildComponent
   ],
   imports: [
     BrowserModule,

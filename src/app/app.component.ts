@@ -27,4 +27,9 @@ export class AppComponent {
     );
     return false;
   }
+
+  logCard(card:JSON)
+  {
+    console.log(card);
+  }
 }
