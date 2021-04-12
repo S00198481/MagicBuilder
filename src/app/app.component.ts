@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { MagicApiService } from './services/magic-api.service'
+import { Component, Input } from '@angular/core';
+import { MagicApiService } from './services/magic-api.service';
 import { MagicResponse } from './magic-response';
+import { DeckBuildComponent } from './deck-build/deck-build.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent {
   constructor(private _magicService:MagicApiService) { }
 
   getCards(cardName:string):boolean {
+    {
     this._magicService.getCards(cardName).subscribe(
       cards => {
         this.cards = cards;
@@ -26,11 +28,22 @@ export class AppComponent {
       },
       error => this.errorMessage = <any>error
     );
+  }
     return false;
   }
 
-  logCard(card:JSON)
-  {
+  logCard(card:JSON) {
     console.log(card);
   }
+
+  getColour(chosenColour:string) {
+    console.log(chosenColour);
+    return(chosenColour);
+  }
+
+  getCmc(chosenCmc:number) {
+    console.log(chosenCmc);
+    return(chosenCmc);
+  }
+  
 }

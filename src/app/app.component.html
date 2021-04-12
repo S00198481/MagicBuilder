@@ -8,7 +8,7 @@
       <button (click)="getCards(cardname.value)" type="submit" class="btn btn-primary">Search</button>
     </div>
   </form>
-  <app-deck-build></app-deck-build>
+  <app-deck-build (chosenColour)="getColour($event)" (chosenCmc)="getCmc($event)"></app-deck-build>
 
   <div class="row bg-light mt-4 p-4" *ngIf="cards">
     <div class="col-sm-4 mt-4" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">

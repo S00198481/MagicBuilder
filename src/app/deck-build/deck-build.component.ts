@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { build$ } from 'protractor/built/element';
 import { MagicApiService } from '../services/magic-api.service'
 
 @Component({
@@ -8,7 +9,12 @@ import { MagicApiService } from '../services/magic-api.service'
 })
 export class DeckBuildComponent implements OnInit {
 
-  constructor(private _magicService:MagicApiService) { }
+  @Output() chosenColour = new EventEmitter<string>();
+  @Output() chosenCmc = new EventEmitter<number>();
+
+  constructor(private _magicService:MagicApiService) {
+    this.chosenColour = new EventEmitter();
+   }
   
 
   ngOnInit(): void {
@@ -16,5 +22,18 @@ export class DeckBuildComponent implements OnInit {
   }
   deck:Array<JSON>;
   show:boolean;
+  colour:string;
+  cmc:number;
 
+  applyColour(event) {
+    var target = event.target;
+    console.log(target.value);
+    this.chosenColour.emit(target.value);
+  }
+
+  applyCmc(event) {
+    var target = event.target;
+    console.log(target.value);
+    this.chosenCmc.emit(target.value);
+  }
 }
