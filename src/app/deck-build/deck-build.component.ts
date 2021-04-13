@@ -11,6 +11,7 @@ export class DeckBuildComponent implements OnInit {
 
   @Output() chosenColour = new EventEmitter<string>();
   @Output() chosenCmc = new EventEmitter<number>();
+  @Output() currentShow = new EventEmitter<boolean>();
 
   constructor(private _magicService:MagicApiService) {
     this.chosenColour = new EventEmitter();
@@ -35,5 +36,9 @@ export class DeckBuildComponent implements OnInit {
     var target = event.target;
     console.log(target.value);
     this.chosenCmc.emit(target.value);
+  }
+
+  changeShow(event) {
+    this.currentShow.emit(this.show);
   }
 }

@@ -70,13 +70,14 @@ export class AppComponent {
   }
 
   getColour(chosenColour:string) {
-    console.log(chosenColour);
     this.colour=chosenColour;
   }
 
   getCmc(chosenCmc:number) {
-    console.log(chosenCmc);
     this.cmc=chosenCmc;
   }
   
+  getShow(currentShow:boolean) {
+    this.show = currentShow;
+  }
 }

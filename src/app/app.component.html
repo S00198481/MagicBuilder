@@ -1,6 +1,6 @@
 <div class='container'>
   <div class="row">
-  <h1 class="mx-auto mt-4">MagicTesting</h1>
+  <h1 class="mx-auto mt-4">Magic Builder</h1>
   </div>
   <form>
     <div class="form-inline mt-4 justify-content-center">
@@ -8,13 +8,13 @@
       <button (click)="getCards(cardname.value)" type="submit" class="btn btn-primary">Search</button>
     </div>
   </form>
-  <app-deck-build (chosenColour)="getColour($event)" (chosenColour)="getCards(cardname.value)" (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)"></app-deck-build>
+  <app-deck-build (chosenColour)="getColour($event)" (chosenColour)="getCards(cardname.value)" (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)" (currentShow)="getShow($event)"></app-deck-build>
 
   <div class="row bg-light mt-4 p-4" *ngIf="cards">
     <div class="col-sm-4 mt-4" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
       <img src="{{card.imageUrl}}" width="200px">
       <div>
-      <button type="button" class="btn btn-success btn-circle mr-0" (click)="logCard(card)">Add</button>
+      <button *ngIf="this.show" type="button" class="btn btn-success btn-circle mr-0" (click)="logCard(card)">Add</button>
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
-<button class="btn btn-primary" (click)="show = !show">{{show ? 'Hide' : 'Build A Deck'}}</button>
+<button class="btn btn-primary" (click)="show = !show" (click)="changeShow($event)">{{show ? 'Hide' : 'Build A Deck'}}</button>
 <div *ngIf="show" class="mx-auto bg-light clearfix">
     <div class="row">
+        <br>
         <p class="mx-auto">Please customise your deck using the settings below and use the search bar to find cards!</p>
     </div>
     <div class="float-left">
@@ -33,7 +34,7 @@
 
     <br><br><br>
     <div class="row align-bottom">
-        <p class="mx-auto">Number of Cards in Deck = 24/60</p>
+        <p class="mx-auto" id="cardNumberText">Number of Cards in Deck = 24/60</p>
     </div>
 
 
