@@ -14,7 +14,7 @@
     <div class="col-xl-3 mt-4" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
       <img src="{{card.imageUrl}}" width="200px">
       <div>
-      <button *ngIf="this.show" [hidden]="!buttonShow" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)" (click)="deckbuild.checkDeckSize()">Add</button>
+      <button *ngIf="this.show" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)" (click)="deckbuild.checkDeckSize()">Add</button>
       </div>
     </div>
   </div>

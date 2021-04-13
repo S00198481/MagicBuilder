@@ -9,12 +9,14 @@ import { DeckBuildComponent } from './deck-build/deck-build.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
+import { SavedDecksComponent } from './saved-decks/saved-decks.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DeckBuildComponent
+    DeckBuildComponent,
+    SavedDecksComponent
   ],
   imports: [
     BrowserModule,

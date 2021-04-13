@@ -18,7 +18,7 @@ export class AppComponent {
   colour:string = "any";
   cmc:number = 0;
   deck:Array<JSON> = [];
-  buttonShow:boolean = false;
+  buttonShow:boolean = true;
 
   constructor(private _magicService:MagicApiService) { }
 

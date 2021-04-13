@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter, SimpleChange } from '@angular/core';
 import { MagicApiService } from '../services/magic-api.service'
+import { DatabaseServiceService } from '../services/database-service.service'
 
 @Component({
   selector: 'app-deck-build',
@@ -11,10 +12,11 @@ export class DeckBuildComponent implements OnInit {
   @Output() chosenColour = new EventEmitter<string>();
   @Output() chosenCmc = new EventEmitter<number>();
   @Output() currentShow = new EventEmitter<boolean>();
+  @Output() buttonShow = new EventEmitter<boolean>();
 
-  @Input() currentDeck:Array<JSON>; 
+  @Input() currentDeck:JSON; 
 
-  constructor(private _magicService:MagicApiService) {
+  constructor(private _magicService:MagicApiService, private _databaseService:DatabaseServiceService) {
     this.chosenColour = new EventEmitter();
   }
    
@@ -44,9 +46,17 @@ export class DeckBuildComponent implements OnInit {
   }
 
   checkDeckSize() {
-    if(this.currentDeck.length == 9)
+    let length = Object.keys(this.currentDeck).length;
+    if(length== 9)
     {
       this.deckFull=true;
+      this.buttonShow.emit(false);
     }
+  }
+
+  uploadDeck() {
+    let deckNameInput = document.getElementById("deckName") as HTMLInputElement;
+    let deckName = deckNameInput.value;
+    this._databaseService.uploadDeck(this.currentDeck, deckName);
   }
 }

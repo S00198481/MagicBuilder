@@ -38,8 +38,8 @@
         <div class="align-bottom mx-auto">
             <p id="cardNumberText">Number of Cards in Deck = 24/60</p>
             <div class="form-inline mt-4 justify-content-center">
-                <input type='text' name='deckName' class="form-control" #deckname placeholder="Enter Deck Name">
-                <button type="submit" class="btn btn-success">Save Deck</button>
+                <input type='text' name="deckName" id='deckName' class="form-control" #deckname placeholder="Enter Deck Name">
+                <button type="submit" class="btn btn-success" (click)="uploadDeck()">Save Deck</button>
             </div>
         </div>
     </div>
