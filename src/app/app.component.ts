@@ -15,8 +15,8 @@ export class AppComponent {
   cards:any;
   errorMessage:any;
   show:boolean;
-  colour:string;
-  cmc:number;
+  colour:string = "any";
+  cmc:number = 0;
 
   constructor(private _magicService:MagicApiService) { }
 
