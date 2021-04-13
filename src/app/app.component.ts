@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { MagicApiService } from './services/magic-api.service';
 import { MagicResponse } from './magic-response';
 import { DeckBuildComponent } from './deck-build/deck-build.component';
@@ -17,10 +17,13 @@ export class AppComponent {
   show:boolean;
   colour:string = "any";
   cmc:number = 0;
+  deck:Array<JSON> = [];
+  buttonShow:boolean = false;
 
   constructor(private _magicService:MagicApiService) { }
 
   getCards(cardName:string):boolean {
+
     if (this.colour == "any" && this.cmc == 0) {
       this._magicService.getCards(cardName, "", 0).subscribe(
         cards => {
@@ -65,8 +68,8 @@ export class AppComponent {
     return false;
   }
 
-  logCard(card:JSON) {
-    console.log(card);
+  saveCard(card:JSON) {
+    this.deck.push(card);
   }
 
   getColour(chosenColour:string) {

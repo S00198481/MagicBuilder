@@ -1,4 +1,5 @@
-<button class="btn btn-primary" (click)="show = !show" (click)="changeShow($event)">{{show ? 'Hide' : 'Build A Deck'}}</button>
+<button class="btn btn-primary" (click)="show = !show" (click)="changeShow($event)">{{show ? 'Hide' : 'Build A
+    Deck'}}</button>
 <div *ngIf="show" class="mx-auto bg-light clearfix">
     <div class="row">
         <br>
@@ -22,23 +23,25 @@
         <h2>Combined Mana Cost:</h2>
 
         <form name="#cmc" (change)="applyCmc($event)">
-            <input type="radio" value="0" name="cmc" ngModel checked> Any  
+            <input type="radio" value="0" name="cmc" ngModel checked> Any
             <input type="radio" value="1" name="cmc" ngModel> 1
             <input type="radio" value="2" name="cmc" ngModel> 2
             <input type="radio" value="3" name="cmc" ngModel> 3
             <input type="radio" value="4" name="cmc" ngModel> 4
             <input type="radio" value="5" name="cmc" ngModel> 5
-            <input type="radio" value="6" name="cmc" ngModel> 6    
+            <input type="radio" value="6" name="cmc" ngModel> 6
         </form>
     </div>
 
     <br><br><br>
-    <div class="row align-bottom">
-        <p class="mx-auto" id="cardNumberText">Number of Cards in Deck = 24/60</p>
+    <div class="row">
+        <div class="align-bottom mx-auto">
+            <p id="cardNumberText">Number of Cards in Deck = 24/60</p>
+            <div class="form-inline mt-4 justify-content-center">
+                <input type='text' name='deckName' class="form-control" #deckname placeholder="Enter Deck Name">
+                <button type="submit" class="btn btn-success">Save Deck</button>
+            </div>
+        </div>
     </div>
-
-
-
-
-
+    <button class="btn btn-danger float-left">New Deck</button>
 </div>

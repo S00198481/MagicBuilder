@@ -8,13 +8,13 @@
       <button (click)="getCards(cardname.value)" type="submit" class="btn btn-primary">Search</button>
     </div>
   </form>
-  <app-deck-build (chosenColour)="getColour($event)" (chosenColour)="getCards(cardname.value)" (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)" (currentShow)="getShow($event)"></app-deck-build>
+  <app-deck-build #deckbuild (chosenColour)="getColour($event)" (chosenColour)="getCards(cardname.value)" (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)" (currentShow)="getShow($event)" [currentDeck]="deck"></app-deck-build>
 
   <div class="row bg-light mt-4 p-4" *ngIf="cards">
-    <div class="col-sm-4 mt-4" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
+    <div class="col-xl-3 mt-4" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
       <img src="{{card.imageUrl}}" width="200px">
       <div>
-      <button *ngIf="this.show" type="button" class="btn btn-success btn-circle mr-0" (click)="logCard(card)">Add</button>
+      <button *ngIf="this.show" [hidden]="!buttonShow" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)" (click)="deckbuild.checkDeckSize()">Add</button>
       </div>
     </div>
   </div>

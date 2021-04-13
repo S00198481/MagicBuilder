@@ -1,5 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { build$ } from 'protractor/built/element';
+import { Component, OnInit, Output, Input, EventEmitter, SimpleChange } from '@angular/core';
 import { MagicApiService } from '../services/magic-api.service'
 
 @Component({
@@ -13,23 +12,25 @@ export class DeckBuildComponent implements OnInit {
   @Output() chosenCmc = new EventEmitter<number>();
   @Output() currentShow = new EventEmitter<boolean>();
 
+  @Input() currentDeck:Array<JSON>; 
+
   constructor(private _magicService:MagicApiService) {
     this.chosenColour = new EventEmitter();
-   }
-  
-
+  }
+   
   ngOnInit(): void {
     
   }
-  deck:Array<JSON>;
   show:boolean;
   colour:string;
   cmc:number;
+  deckFull:boolean;
 
   applyColour(event) {
     var target = event.target;
     console.log(target.value);
     this.chosenColour.emit(target.value);
+    console.log(this.currentDeck);
   }
 
   applyCmc(event) {
@@ -40,5 +41,12 @@ export class DeckBuildComponent implements OnInit {
 
   changeShow(event) {
     this.currentShow.emit(this.show);
+  }
+
+  checkDeckSize() {
+    if(this.currentDeck.length == 9)
+    {
+      this.deckFull=true;
+    }
   }
 }
