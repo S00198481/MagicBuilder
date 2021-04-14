@@ -1,4 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { MagicApiService } from '../services/magic-api.service'
+import { DatabaseServiceService } from '../services/database-service.service'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-saved-decks',
@@ -7,18 +10,20 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SavedDecksComponent implements OnInit {
 
-  @Output() buildShow = new EventEmitter<boolean>();
-
-  constructor() { }
-  savedShow:boolean;
-  savedDecks:Array<JSON>;
+  constructor(private _magicService:MagicApiService, private _databaseService:DatabaseServiceService) { }
+  savedDecks:JSON[];
 
   ngOnInit(): void {
+    this._databaseService.getDecks().subscribe(deckData =>
+      { this.savedDecks = deckData
+      console.log(this.savedDecks)});
   }
 
-  
+  loadSelectedDeck() {
 
-  uploadDeck() {
+  }
+
+  loadDecks() {
 
   }
 }

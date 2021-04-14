@@ -17,7 +17,6 @@ export class DeckBuildComponent implements OnInit {
   @Input() currentDeck:JSON; 
 
   constructor(private _magicService:MagicApiService, private _databaseService:DatabaseServiceService) {
-    this.chosenColour = new EventEmitter();
   }
    
   ngOnInit(): void {

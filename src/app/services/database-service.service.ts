@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -7,13 +7,17 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/fire
 @Injectable({
   providedIn: 'root'
 })
-export class DatabaseServiceService {
+export class DatabaseServiceService implements OnInit{
 
   deckDataCollection:AngularFirestoreCollection<JSON>;
   decksData:Observable<JSON[]>;
   allDeckData:JSON;
   erorrMessage:string;
   
+  ngOnInit() {
+    
+  }
+
   constructor(private _http:HttpClient, private _afs:AngularFirestore) {
     this.deckDataCollection = _afs.collection<JSON>("decks");
    }
@@ -21,8 +25,6 @@ export class DatabaseServiceService {
   getDecks(): Observable<JSON[]> {
     this.decksData = this.deckDataCollection.valueChanges();
     this.decksData.subscribe(
-      data => console.log("decks from database : "),
-      data => console.log(data)
     )
 
     return this.decksData;
@@ -31,7 +33,7 @@ export class DatabaseServiceService {
   uploadDeck(deck: JSON, deckName:string) {
 
     this._afs.collection('decks').doc(deckName).set({
-      deckName: "New Deck",
+      deckName: deckName,
       deck: deck
     })
       .catch(e => {

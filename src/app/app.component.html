@@ -22,7 +22,7 @@
   <app-deck-build *ngIf="this.show" #deckbuild (chosenColour)="getColour($event)" (chosenColour)="getCards(cardname.value)"
       (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)" (currentShow)="getShow($event)"
       [currentDeck]="deck"></app-deck-build>
-  <app-saved-decks *ngIf="this.savedShow"></app-saved-decks>
+  <app-saved-decks *ngIf="this.savedShow" #savedDecks></app-saved-decks>
 </div>
 
   <div class="row bg-light mt-4 p-4" *ngIf="cards">
