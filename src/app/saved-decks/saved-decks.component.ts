@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-saved-decks',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SavedDecksComponent implements OnInit {
 
+  @Output() buildShow = new EventEmitter<boolean>();
+
   constructor() { }
+  savedShow:boolean;
+  savedDecks:Array<JSON>;
 
   ngOnInit(): void {
   }
 
+  
+
+  uploadDeck() {
+
+  }
 }
