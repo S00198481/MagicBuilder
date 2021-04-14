@@ -15,6 +15,7 @@ export class AppComponent {
   cards:any;
   errorMessage:any;
   show:boolean;
+  savedShow:boolean;
   colour:string = "any";
   cmc:number = 0;
   deck:Array<JSON> = [];
@@ -83,4 +84,13 @@ export class AppComponent {
   getShow(currentShow:boolean) {
     this.show = currentShow;
   }
+
+  hideSaved() {
+    this.savedShow=false;
+  }
+
+  hideBuild() {
+    this.show=false;
+  }
+  
 }

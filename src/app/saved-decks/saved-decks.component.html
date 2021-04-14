@@ -1,1 +1,26 @@
-<p>saved-decks works!</p>
+<!--<button class="btn btn-primary mr-0" (click)="savedShow = !savedShow" id="#saveBtn" (click)="hideBuild($event)">{{savedShow ? 'Hide' : 'View Saved Decks'}}</button>-->
+<div class="mx-auto bg-light clearfix"><!-- *ngIf="savedShow" -->
+    <div class="row">
+        <br>
+        <p class="mx-auto">Please choose a saved deck from the dropdown!</p>
+    </div>
+    <div class="float-left">
+        <h2>Choose Saved Deck:</h2>
+    </div>
+
+
+    <div class="float-right">
+        <h2>Rename Deck:</h2>
+    </div>
+
+    <br><br><br>
+    <div class="row">
+        <div class="align-bottom mx-auto">
+            <div class="form-inline mt-4 justify-content-center">
+                <input type='text' name="deckName" id='deckName' class="form-control" #deckname placeholder="Enter Deck Name">
+                <button type="submit" class="btn btn-success" (click)="uploadDeck()">Load Deck</button>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-danger float-left">New Deck</button>
+</div>

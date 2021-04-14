@@ -8,7 +8,22 @@
       <button (click)="getCards(cardname.value)" type="submit" class="btn btn-primary">Search</button>
     </div>
   </form>
-  <app-deck-build #deckbuild (chosenColour)="getColour($event)" (chosenColour)="getCards(cardname.value)" (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)" (currentShow)="getShow($event)" [currentDeck]="deck"></app-deck-build>
+
+<div class="container">
+  <div class="float-left">
+    <button class="btn btn-primary start-0" (click)="show = !show" (click)="hideSaved()">{{show ? 'Hide' : 'Build A
+      Deck'}}</button>
+  </div>
+  <div class="float-right">
+    <button class="btn btn-primary mr-0" (click)="savedShow = !savedShow" (click)="hideBuild()" id="#saveBtn" >{{savedShow ? 'Hide' : 'View Saved Decks'}}</button>
+  </div>
+</div>
+<div>
+  <app-deck-build *ngIf="this.show" #deckbuild (chosenColour)="getColour($event)" (chosenColour)="getCards(cardname.value)"
+      (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)" (currentShow)="getShow($event)"
+      [currentDeck]="deck"></app-deck-build>
+  <app-saved-decks *ngIf="this.savedShow"></app-saved-decks>
+</div>
 
   <div class="row bg-light mt-4 p-4" *ngIf="cards">
     <div class="col-xl-3 mt-4" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">

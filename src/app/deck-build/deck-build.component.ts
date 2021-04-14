@@ -59,4 +59,10 @@ export class DeckBuildComponent implements OnInit {
     let deckName = deckNameInput.value;
     this._databaseService.uploadDeck(this.currentDeck, deckName);
   }
+
+  hideBuild(showBuild:boolean) {
+    this.show = showBuild;
+    console.log(this.show);
+    console.log(showBuild);
+  }
 }
