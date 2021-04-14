@@ -3,14 +3,15 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { Deck } from '../deck-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseServiceService implements OnInit{
 
-  deckDataCollection:AngularFirestoreCollection<JSON>;
-  decksData:Observable<JSON[]>;
+  deckDataCollection:AngularFirestoreCollection<Deck>;
+  decksData:Observable<Deck[]>;
   allDeckData:JSON;
   erorrMessage:string;
   
@@ -19,10 +20,10 @@ export class DatabaseServiceService implements OnInit{
   }
 
   constructor(private _http:HttpClient, private _afs:AngularFirestore) {
-    this.deckDataCollection = _afs.collection<JSON>("decks");
+    this.deckDataCollection = _afs.collection<Deck>("decks");
    }
 
-  getDecks(): Observable<JSON[]> {
+  getDecks(): Observable<Deck[]> {
     this.decksData = this.deckDataCollection.valueChanges();
     this.decksData.subscribe(
     )
