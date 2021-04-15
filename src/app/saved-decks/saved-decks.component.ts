@@ -37,8 +37,4 @@ export class SavedDecksComponent implements OnInit {
     console.log(this.savedDecks[selectedDeck]);
     this.selectedDeck.emit(this.savedDecks[selectedDeck]);
   }
-
-  loadDecks() {
-
-  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter, SimpleChange } from '@angular/core';
 import { MagicApiService } from '../services/magic-api.service'
 import { DatabaseServiceService } from '../services/database-service.service'
+import { Deck } from '../deck-interface';
 
 @Component({
   selector: 'app-deck-build',
@@ -15,6 +16,7 @@ export class DeckBuildComponent implements OnInit {
   @Output() buttonShow = new EventEmitter<boolean>();
 
   @Input() currentDeck:JSON; 
+  @Input() totalCards:number;
 
   constructor(private _magicService:MagicApiService, private _databaseService:DatabaseServiceService) {
   }
@@ -44,13 +46,10 @@ export class DeckBuildComponent implements OnInit {
     this.currentShow.emit(this.show);
   }
 
-  checkDeckSize() {
-    let length = Object.keys(this.currentDeck).length;
-    if(length== 9)
-    {
-      this.deckFull=true;
-      this.buttonShow.emit(false);
-    }
+  checkDeckSize(deck:JSON[]) {
+      var totalCards = 4*Object.keys(deck).length + 24;
+      var text = document.getElementById("cardNumberText");
+      text.textContent = "Number of Cards in Deck = " + totalCards + "/60";
   }
 
   uploadDeck() {

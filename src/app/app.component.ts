@@ -8,7 +8,7 @@ import { Deck } from './deck-interface';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [MagicApiService]
+  providers: [MagicApiService, DeckBuildComponent]
 })
 export class AppComponent {
   title = 'MagicBuilder';
@@ -24,9 +24,10 @@ export class AppComponent {
   buttonShow:boolean = true;
   boolSavedCards:boolean;
   boolSearchedCards:boolean;
+  totalCards:number;
 
 
-  constructor(private _magicService:MagicApiService) { }
+  constructor(private _magicService:MagicApiService, private _deckBuild:DeckBuildComponent) { }
 
   getCards(cardName:string):boolean {
 
@@ -75,7 +76,7 @@ export class AppComponent {
   }
 
   saveCard(card:JSON) {
-    this.deck.push(card);
+    this.deck.push(card);  
   }
 
   getColour(chosenColour:string) {
@@ -119,6 +120,26 @@ export class AppComponent {
 
   showSavedCards() {
     this.boolSavedCards = true;
+  }
+
+  checkDeckSize() {
+    //this.totalCards = Object.keys(this.deck).length + 24;  
+    //console.log(this.totalCards);
+    console.log(this.deck);
+    this._deckBuild.checkDeckSize(this.deck);
+  }
+
+  hideButtons() {
+    console.log("in hide buttons")
+    var totalCards = Object.keys(this.deck).length;
+    console.log(totalCards);
+    if(totalCards == 9) {
+      this.buttonShow=false;
+      console.log("hide them!!")
+    }
+    else {
+      this.buttonShow=true;
+    }
   }
   
 }

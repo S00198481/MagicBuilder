@@ -21,7 +21,8 @@
 <div>
   <app-deck-build *ngIf="this.show" #deckbuild (chosenColour)="getColour($event)" (chosenColour)="getCards(cardname.value)"
       (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)" (currentShow)="getShow($event)"
-      [currentDeck]="deck"></app-deck-build>
+      [currentDeck]="deck" [totalCards]="totalCards" (buttonShow)="hideButtons()"></app-deck-build>
+
   <app-saved-decks *ngIf="this.savedShow" #savedDecks (selectedDeck)="getSelectedDeck($event)"></app-saved-decks>
 </div>
 
@@ -29,7 +30,7 @@
     <div class="col-xl-3 mt-4" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
       <img src="{{card.imageUrl}}" width="200px">
       <div>
-      <button *ngIf="this.show" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)" (click)="deckbuild.checkDeckSize()">Add</button>
+      <button *ngIf="this.show" [hidden]="buttonShow==false" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)" (click)="checkDeckSize()" (click)="hideButtons()">Add</button>
       </div>
     </div>
   </div>
@@ -38,7 +39,8 @@
     <div class="col-xl-3 mt-4" *ngFor="let card of this.savedCards" [savedCards]="savedCards" [hidden]="card.imageUrl==null">
       <img src="{{card.imageUrl}}" width="200px">
       <div>
-      <button *ngIf="this.show" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)" (click)="deckbuild.checkDeckSize()">Add</button>
+      <button *ngIf="this.show" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)">Add</button>
       </div>
     </div>
   </div>
+  
