@@ -5,7 +5,7 @@
   <form>
     <div class="form-inline mt-4 justify-content-center">
       <input type='text' name='cardname' class="form-control" #cardname placeholder="Enter Card Name">
-      <button (click)="getCards(cardname.value)" type="submit" class="btn btn-primary">Search</button>
+      <button (click)="getCards(cardname.value)" type="submit" class="btn btn-primary" (click)="showSearchedCards()" (click)="hideSavedCards()">Search</button>
     </div>
   </form>
 
@@ -15,18 +15,27 @@
       Deck'}}</button>
   </div>
   <div class="float-right">
-    <button class="btn btn-primary mr-0" (click)="savedShow = !savedShow" (click)="hideBuild()" id="#saveBtn" >{{savedShow ? 'Hide' : 'View Saved Decks'}}</button>
+    <button class="btn btn-primary mr-0" (click)="savedShow = !savedShow" (click)="hideBuild()" id="#saveBtn"  (click)="hideSearchedCards()" (click)="showSavedCards()" (click)="cards=null" (click)="savedCards=null">{{savedShow ? 'Hide' : 'View Saved Decks'}}</button>
   </div>
 </div>
 <div>
   <app-deck-build *ngIf="this.show" #deckbuild (chosenColour)="getColour($event)" (chosenColour)="getCards(cardname.value)"
       (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)" (currentShow)="getShow($event)"
       [currentDeck]="deck"></app-deck-build>
-  <app-saved-decks *ngIf="this.savedShow" #savedDecks></app-saved-decks>
+  <app-saved-decks *ngIf="this.savedShow" #savedDecks (selectedDeck)="getSelectedDeck($event)"></app-saved-decks>
 </div>
 
-  <div class="row bg-light mt-4 p-4" *ngIf="cards">
+  <div class="row bg-light mt-4 p-4" *ngIf="cards" [hidden]="boolSearchedCards == false">
     <div class="col-xl-3 mt-4" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
+      <img src="{{card.imageUrl}}" width="200px">
+      <div>
+      <button *ngIf="this.show" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)" (click)="deckbuild.checkDeckSize()">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row bg-light mt-4 p-4" *ngIf="savedCards" [hidden]="boolSavedCards == false">
+    <div class="col-xl-3 mt-4" *ngFor="let card of this.savedCards" [savedCards]="savedCards" [hidden]="card.imageUrl==null">
       <img src="{{card.imageUrl}}" width="200px">
       <div>
       <button *ngIf="this.show" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)" (click)="deckbuild.checkDeckSize()">Add</button>

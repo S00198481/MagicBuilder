@@ -57,6 +57,7 @@ export class DeckBuildComponent implements OnInit {
     let deckNameInput = document.getElementById("deckName") as HTMLInputElement;
     let deckName = deckNameInput.value;
     this._databaseService.uploadDeck(this.currentDeck, deckName);
+    window.alert("Deck Saved Successfully!")
   }
 
   hideBuild(showBuild:boolean) {

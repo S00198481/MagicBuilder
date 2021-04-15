@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { MagicApiService } from './services/magic-api.service';
 import { MagicResponse } from './magic-response';
 import { DeckBuildComponent } from './deck-build/deck-build.component';
+import { Deck } from './deck-interface';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent {
   title = 'MagicBuilder';
 
   cards:any;
+  savedCards:JSON;
   errorMessage:any;
   show:boolean;
   savedShow:boolean;
@@ -20,6 +22,9 @@ export class AppComponent {
   cmc:number = 0;
   deck:Array<JSON> = [];
   buttonShow:boolean = true;
+  boolSavedCards:boolean;
+  boolSearchedCards:boolean;
+
 
   constructor(private _magicService:MagicApiService) { }
 
@@ -91,6 +96,29 @@ export class AppComponent {
 
   hideBuild() {
     this.show=false;
+  }
+
+  getSelectedDeck(selectedDeck:Deck) {
+    console.log("In getSelectedDeck");
+    console.log(selectedDeck.deck);
+    this.savedCards = selectedDeck.deck;
+    console.log(this.savedCards);
+  }
+
+  hideSearchedCards() {
+    this.boolSearchedCards = false;
+  }
+
+  hideSavedCards() {
+    this.boolSavedCards = false;
+  }
+
+  showSearchedCards() {
+    this.boolSearchedCards = true;
+  }
+
+  showSavedCards() {
+    this.boolSavedCards = true;
   }
   
 }

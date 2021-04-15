@@ -10,6 +10,8 @@ import { Deck } from '../deck-interface';
 })
 export class SavedDecksComponent implements OnInit {
 
+  @Output() selectedDeck = new EventEmitter<Deck>();
+
   constructor(private _magicService:MagicApiService, private _databaseService:DatabaseServiceService) { }
   savedDecks:Deck[];
 
@@ -30,7 +32,10 @@ export class SavedDecksComponent implements OnInit {
   }
 
   loadSelectedDeck() {
-
+    var dropdown = document.getElementById("dropdown") as HTMLSelectElement;
+    var selectedDeck = dropdown.selectedIndex;
+    console.log(this.savedDecks[selectedDeck]);
+    this.selectedDeck.emit(this.savedDecks[selectedDeck]);
   }
 
   loadDecks() {
