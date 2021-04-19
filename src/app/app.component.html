@@ -16,14 +16,13 @@
 <div class="container d-flex justify-content-between">
   <div class="col-6">
     <div class="float-left .menuButton">
-    <button class="btn btn-warning divButton" (click)="show = !show" (click)="hideSaved()">{{show ? 'Hide' : 'Build A
-      Deck'}}</button>
+    <button class="btn btn-warning divButton" (click)="show = !show" (click)="hideSaved()">{{show ? 'Hide' : 'Build'}}</button>
     </div>
   </div>
   <div class="col-6
   ">
     <div class="float-right .menuButton">
-    <button class="btn btn-warning divButton" id="rightButton" (click)="savedShow = !savedShow" (click)="hideBuild()" id="#saveBtn"  (click)="hideSearchedCards()" (click)="showSavedCards()" (click)="cards=null" (click)="savedCards=null">{{savedShow ? 'Hide' : 'View Saved Decks'}}</button>
+    <button class="btn btn-warning divButton" id="rightButton" (click)="savedShow = !savedShow" (click)="hideBuild()" id="#saveBtn"  (click)="hideSearchedCards()" (click)="showSavedCards()" (click)="cards=null" (click)="savedCards=null">{{savedShow ? 'Hide' : 'Saved'}}</button>
     </div>
   </div>
 </div>
@@ -36,8 +35,8 @@
 </div>
 
   <div style="background-color: dimgray;"  class="row bg-light mt-4 p-4" *ngIf="cards" [hidden]="boolSearchedCards == false">
-    <div class="col-xl-3 mt-4" id="cardRoot" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
-      <img src="{{card.imageUrl}}" width="200px">
+    <div class="col-xl-3 mt-4 card" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
+      <img class="mx-auto" src="{{card.imageUrl}}" width="200px">
       <div>
       <button *ngIf="this.show" [hidden]="buttonShow==false" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)" (click)="checkDeckSize()" (click)="hideButtons()">Add</button>
       </div>
@@ -45,8 +44,8 @@
   </div>
 
   <div class="row bg-light mt-4 p-4" *ngIf="savedCards" [hidden]="boolSavedCards == false">
-    <div class="col-xl-3 mt-4" *ngFor="let card of this.savedCards" [savedCards]="savedCards" [hidden]="card.imageUrl==null">
-      <img src="{{card.imageUrl}}" width="200px">
+    <div class="col-xl-3 mt-4 card" *ngFor="let card of this.savedCards" [savedCards]="savedCards" [hidden]="card.imageUrl==null">
+      <img class="mx-auto" src="{{card.imageUrl}}" width="200px">
       <div>
       <button *ngIf="this.show" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)">Add</button>
       </div>
