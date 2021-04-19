@@ -1,5 +1,5 @@
 <!--<button class="btn btn-primary mr-0" (click)="savedShow = !savedShow" id="#saveBtn" (click)="hideBuild($event)">{{savedShow ? 'Hide' : 'View Saved Decks'}}</button>-->
-<div class="mx-auto bg-light clearfix"><!-- *ngIf="savedShow" -->
+<div class="mx-auto bg-light clearfix settingsMenu"><!-- *ngIf="savedShow" -->
     <div class="row">
         <br>
         <p class="mx-auto">Please choose a saved deck from the dropdown!</p>
@@ -8,10 +8,10 @@
     <div class="row">
         <div class="align-bottom mx-auto">
             <div class="form-inline mt-4 justify-content-center">
-                <select id="dropdown"></select>
+                <select class="dropdown-toggle" id="dropdown"></select>
                 <button type="submit" class="btn btn-success" (click)="loadSelectedDeck()">Load Deck</button>
             </div>
         </div>
     </div>
-    <button class="btn btn-danger float-left">New Deck</button>
+    <button class="btn btn-danger float-left" (click)="deleteDeck()">Delete Selected Deck</button>
 </div>

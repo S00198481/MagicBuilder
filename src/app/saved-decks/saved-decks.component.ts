@@ -20,6 +20,13 @@ export class SavedDecksComponent implements OnInit {
       { this.savedDecks = deckData
       console.log(this.savedDecks)
       let dropdown = document.getElementById("dropdown") as HTMLSelectElement;
+      if (dropdown.options.length != 0)
+      {
+        for(let i=0; i<dropdown.options.length; i++)
+        {
+          dropdown.options[i]=null;
+        }
+      }
       let noOfDecks = Object.keys(this.savedDecks).length;
       for(let i=0; i<noOfDecks; i++) {
         let option = document.createElement("option");
@@ -36,5 +43,21 @@ export class SavedDecksComponent implements OnInit {
     var selectedDeck = dropdown.selectedIndex;
     console.log(this.savedDecks[selectedDeck]);
     this.selectedDeck.emit(this.savedDecks[selectedDeck]);
+  }
+
+  deleteDeck() {
+    var dropdown = document.getElementById("dropdown") as HTMLSelectElement;
+    var selectedDeck = dropdown.selectedIndex;
+    try {
+      this._databaseService.deleteDeck(this.savedDecks[selectedDeck]);
+      for(let i=0; i<dropdown.options.length; i++)
+          {
+            dropdown.options[i]=null;
+          }
+      this.selectedDeck.emit(null);
+      window.alert("Deck deleted successfully!")
+      } catch(err:any) {
+        console.log("Error" + err);
+      }
   }
 }

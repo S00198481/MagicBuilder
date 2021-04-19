@@ -8,20 +8,20 @@ import { Deck } from '../deck-interface';
 @Injectable({
   providedIn: 'root'
 })
-export class DatabaseServiceService implements OnInit{
+export class DatabaseServiceService implements OnInit {
 
-  deckDataCollection:AngularFirestoreCollection<Deck>;
-  decksData:Observable<Deck[]>;
-  allDeckData:JSON;
-  erorrMessage:string;
-  
+  deckDataCollection: AngularFirestoreCollection<Deck>;
+  decksData: Observable<Deck[]>;
+  allDeckData: JSON;
+  erorrMessage: string;
+
   ngOnInit() {
-    
+
   }
 
-  constructor(private _http:HttpClient, private _afs:AngularFirestore) {
+  constructor(private _http: HttpClient, private _afs: AngularFirestore) {
     this.deckDataCollection = _afs.collection<Deck>("decks");
-   }
+  }
 
   getDecks(): Observable<Deck[]> {
     this.decksData = this.deckDataCollection.valueChanges();
@@ -31,7 +31,7 @@ export class DatabaseServiceService implements OnInit{
     return this.decksData;
   }
 
-  uploadDeck(deck: JSON, deckName:string) {
+  uploadDeck(deck: JSON, deckName: string) {
 
     this._afs.collection('decks').doc(deckName).set({
       deckName: deckName,
@@ -42,8 +42,14 @@ export class DatabaseServiceService implements OnInit{
       })
   }
 
-   private handleError(err:HttpErrorResponse) {
-     console.log("database error: " + err.message)
-     return Observable.throw(err.message);
-   }
+  private handleError(err: HttpErrorResponse) {
+    console.log("database error: " + err.message)
+    return Observable.throw(err.message);
+  }
+
+  deleteDeck(deck: Deck) {
+    var deckTitle = deck.deckName
+    this.deckDataCollection.doc(deck.deckName).delete();
+    console.log("in service delete")
+  }
 }

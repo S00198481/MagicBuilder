@@ -103,10 +103,16 @@ export class AppComponent {
   }
 
   getSelectedDeck(selectedDeck:Deck) {
-    console.log("In getSelectedDeck");
-    console.log(selectedDeck.deck);
+    console.log("in get selected deck")
+    if (selectedDeck == null)
+    {
+      this.savedCards = null;
+    }
+    else
+    {    
     this.savedCards = selectedDeck.deck;
     console.log(this.savedCards);
+    }
   }
 
   hideSearchedCards() {
