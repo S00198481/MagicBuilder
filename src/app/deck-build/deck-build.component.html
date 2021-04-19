@@ -1,35 +1,41 @@
 
-<div  class="mx-auto bg-light clearfix" id=#buildDiv>
+<div  class="mx-auto bg-light clearfix settingsMenu" id=#buildDiv>
     <div class="row">
         <br>
         <p class="mx-auto">Please customise your deck using the settings below and use the search bar to find cards!</p>
     </div>
-    <div class="float-left">
-        <h2>Deck Colour:</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="#colour">
+                <h2>Deck Colour:</h2>
 
-        <form name="#colour" (change)="applyColour($event)">
-            <input type="radio" value="any" name="colour" ngModel checked> Any
-            <input type="radio" value="white" name="colour" ngModel> White
-            <input type="radio" value="black" name="colour" ngModel> Black
-            <input type="radio" value="red" name="colour" ngModel> Red
-            <input type="radio" value="blue" name="colour" ngModel> Blue
-            <input type="radio" value="green" name="colour" ngModel> Green
-        </form>
-    </div>
+                <form name="#colour" (change)="applyColour($event)">
+                    <input type="radio" value="any" name="colour" ngModel checked> Any
+                    <input type="radio" value="white" name="colour" ngModel> White
+                    <input type="radio" value="black" name="colour" ngModel> Black
+                    <input type="radio" value="red" name="colour" ngModel> Red
+                    <input type="radio" value="blue" name="colour" ngModel> Blue
+                    <input type="radio" value="green" name="colour" ngModel> Green
+                </form>
+            </div>
+        </div>
 
 
-    <div class="float-right">
-        <h2>Combined Mana Cost:</h2>
+        <div class="col-md-6">
+            <div id=#cmc>
+                <h2>Combined Mana Cost:</h2>
 
-        <form name="#cmc" (change)="applyCmc($event)">
-            <input type="radio" value="0" name="cmc" ngModel checked> Any
-            <input type="radio" value="1" name="cmc" ngModel> 1
-            <input type="radio" value="2" name="cmc" ngModel> 2
-            <input type="radio" value="3" name="cmc" ngModel> 3
-            <input type="radio" value="4" name="cmc" ngModel> 4
-            <input type="radio" value="5" name="cmc" ngModel> 5
-            <input type="radio" value="6" name="cmc" ngModel> 6
-        </form>
+                <form name="#cmc" (change)="applyCmc($event)">
+                    <input type="radio" value="0" name="cmc" ngModel checked> Any
+                    <input type="radio" value="1" name="cmc" ngModel> 1
+                    <input type="radio" value="2" name="cmc" ngModel> 2
+                    <input type="radio" value="3" name="cmc" ngModel> 3
+                    <input type="radio" value="4" name="cmc" ngModel> 4
+                    <input type="radio" value="5" name="cmc" ngModel> 5
+                    <input type="radio" value="6" name="cmc" ngModel> 6
+                </form>
+            </div>
+        </div>
     </div>
 
     <br><br><br>

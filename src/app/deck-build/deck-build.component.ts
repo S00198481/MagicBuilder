@@ -19,10 +19,10 @@ export class DeckBuildComponent implements OnInit {
   @Input() totalCards:number;
 
   constructor(private _magicService:MagicApiService, private _databaseService:DatabaseServiceService) {
+    
   }
    
   ngOnInit(): void {
-    
   }
   show:boolean;
   colour:string;

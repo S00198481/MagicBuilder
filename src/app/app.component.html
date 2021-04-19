@@ -9,13 +9,17 @@
     </div>
   </form>
 
-<div class="container">
-  <div class="float-left">
-    <button class="btn btn-primary start-0" (click)="show = !show" (click)="hideSaved()">{{show ? 'Hide' : 'Build A
+<div class="container row">
+  <div class="col-6">
+    <div class="float-left .menuButton">
+    <button class="btn btn-primary" (click)="show = !show" (click)="hideSaved()">{{show ? 'Hide' : 'Build A
       Deck'}}</button>
+    </div>
   </div>
-  <div class="float-right">
-    <button class="btn btn-primary mr-0" (click)="savedShow = !savedShow" (click)="hideBuild()" id="#saveBtn"  (click)="hideSearchedCards()" (click)="showSavedCards()" (click)="cards=null" (click)="savedCards=null">{{savedShow ? 'Hide' : 'View Saved Decks'}}</button>
+  <div class="col-6">
+    <div class="float-right .menuButton">
+    <button class="btn btn-primary" (click)="savedShow = !savedShow" (click)="hideBuild()" id="#saveBtn"  (click)="hideSearchedCards()" (click)="showSavedCards()" (click)="cards=null" (click)="savedCards=null">{{savedShow ? 'Hide' : 'View Saved Decks'}}</button>
+    </div>
   </div>
 </div>
 <div>

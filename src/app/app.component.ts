@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { MagicApiService } from './services/magic-api.service';
 import { MagicResponse } from './magic-response';
 import { DeckBuildComponent } from './deck-build/deck-build.component';
@@ -8,7 +8,8 @@ import { Deck } from './deck-interface';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [MagicApiService, DeckBuildComponent]
+  providers: [MagicApiService, DeckBuildComponent],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = 'MagicBuilder';
@@ -27,7 +28,9 @@ export class AppComponent {
   totalCards:number;
 
 
-  constructor(private _magicService:MagicApiService, private _deckBuild:DeckBuildComponent) { }
+  constructor(private _magicService:MagicApiService, private _deckBuild:DeckBuildComponent) {
+    document.body.style.background = 'rgba(0, 0, 0, .6)';
+   }
 
   getCards(cardName:string):boolean {
 
