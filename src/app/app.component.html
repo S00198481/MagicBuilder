@@ -13,7 +13,7 @@
     </div>
   </form>
 
-<div class="container d-flex justify-content-between">
+<div class="d-flex justify-content-between">
   <div class="col-6">
     <div class="float-left .menuButton">
     <button class="btn btn-warning divButton" (click)="show = !show" (click)="hideSaved()">{{show ? 'Hide' : 'Build'}}</button>
@@ -34,18 +34,18 @@
   <app-saved-decks *ngIf="this.savedShow" #savedDecks (selectedDeck)="getSelectedDeck($event)" ></app-saved-decks>
 </div>
 
-  <div style="background-color: dimgray;"  class="row bg-light mt-4 p-4" *ngIf="cards" [hidden]="boolSearchedCards == false">
+  <div class="row mt-4 p-4 bg-light" *ngIf="cards" [hidden]="boolSearchedCards == false">
     <div class="col-xl-3 mt-4 card" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
-      <img class="mx-auto" src="{{card.imageUrl}}" width="200px">
+      <img class="mx-auto mt-3 mb-3" src="{{card.imageUrl}}" width="200px">
       <div>
       <button *ngIf="this.show" [hidden]="buttonShow==false" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)" (click)="checkDeckSize()" (click)="hideButtons()">Add</button>
       </div>
     </div>
   </div>
 
-  <div class="row bg-light mt-4 p-4" *ngIf="savedCards" [hidden]="boolSavedCards == false">
+  <div id="cards2" class="row bg-light mt-4 p-4" *ngIf="savedCards" [hidden]="boolSavedCards == false">
     <div class="col-xl-3 mt-4 card" *ngFor="let card of this.savedCards" [savedCards]="savedCards" [hidden]="card.imageUrl==null">
-      <img class="mx-auto" src="{{card.imageUrl}}" width="200px">
+      <img class="mx-auto mt-3 mb-3" src="{{card.imageUrl}}" width="200px">
       <div>
       <button *ngIf="this.show" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)">Add</button>
       </div>
