@@ -18,7 +18,6 @@ export class SavedDecksComponent implements OnInit {
   ngOnInit(): void {
     this._databaseService.getDecks().subscribe(deckData =>
       { this.savedDecks = deckData
-      console.log(this.savedDecks)
       let dropdown = document.getElementById("dropdown") as HTMLSelectElement;
       if (dropdown.options.length != 0)
       {
@@ -41,7 +40,6 @@ export class SavedDecksComponent implements OnInit {
   loadSelectedDeck() {
     var dropdown = document.getElementById("dropdown") as HTMLSelectElement;
     var selectedDeck = dropdown.selectedIndex;
-    console.log(this.savedDecks[selectedDeck]);
     this.selectedDeck.emit(this.savedDecks[selectedDeck]);
   }
 

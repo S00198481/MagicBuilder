@@ -26,7 +26,6 @@ export class MagicApiService {
     }
 
     if (colour != "any" && cmc == 0) {
-      console.log("in colour filter");
       return this._http.get<JSON>(this._siteURL + cardName + "&colors=" + colour)
         .pipe(
           tap(data => console.log(data)
@@ -36,7 +35,6 @@ export class MagicApiService {
     }
 
     if (colour == "any" && cmc != 0) {
-      console.log("in colour filter");
       return this._http.get<JSON>(this._siteURL + cardName + "&cmc=" + cmc)
         .pipe(
           tap(data => console.log(data)
@@ -46,7 +44,6 @@ export class MagicApiService {
     }
 
     if (colour != "any" && cmc != 0) {
-      console.log("in colour filter");
       return this._http.get<JSON>(this._siteURL + cardName + "&colors=" + colour + "&cmc=" + cmc)
         .pipe(
           tap(data => console.log(data)

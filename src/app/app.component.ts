@@ -36,8 +36,6 @@ export class AppComponent {
       this._magicService.getCards(cardName, "", 0).subscribe(
         cards => {
           this.cards = cards;
-          console.log(cards);
-          console.log(this.cards);
         },
         error => this.errorMessage = <any>error
       );
@@ -46,8 +44,6 @@ export class AppComponent {
       this._magicService.getCards(cardName, this.colour, 0).subscribe(
         cards => {
           this.cards = cards;
-          console.log(cards);
-          console.log(this.cards);
         },
         error => this.errorMessage = <any>error
       );
@@ -56,8 +52,6 @@ export class AppComponent {
       this._magicService.getCards(cardName, "", 0).subscribe(
         cards => {
           this.cards = cards;
-          console.log(cards);
-          console.log(this.cards);
         },
         error => this.errorMessage = <any>error
       );
@@ -66,8 +60,6 @@ export class AppComponent {
       this._magicService.getCards(cardName, this.colour, this.cmc).subscribe(
         cards => {
           this.cards = cards;
-          console.log(cards);
-          console.log(this.cards);
         },
         error => this.errorMessage = <any>error
       );
@@ -101,7 +93,6 @@ export class AppComponent {
   }
 
   getSelectedDeck(selectedDeck:Deck) {
-    console.log("in get selected deck")
     if (selectedDeck == null)
     {
       this.savedCards = null;
@@ -109,7 +100,6 @@ export class AppComponent {
     else
     {    
     this.savedCards = selectedDeck.deck;
-    console.log(this.savedCards);
     }
   }
 
@@ -130,23 +120,21 @@ export class AppComponent {
   }
 
   checkDeckSize() {
-    //this.totalCards = Object.keys(this.deck).length + 24;  
-    //console.log(this.totalCards);
-    console.log(this.deck);
     this._deckBuild.checkDeckSize(this.deck);
   }
 
   hideButtons() {
-    console.log("in hide buttons")
     var totalCards = Object.keys(this.deck).length;
-    console.log(totalCards);
     if(totalCards == 9) {
       this.buttonShow=false;
-      console.log("hide them!!")
     }
     else {
       this.buttonShow=true;
     }
+  }
+
+  clearDeck() {
+    this.deck = [];
   }
   
 }

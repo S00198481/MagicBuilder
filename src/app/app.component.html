@@ -29,9 +29,9 @@
 <div>
   <app-deck-build *ngIf="this.show" #deckbuild (chosenColour)="getColour($event)" (chosenColour)="getCards(cardname.value)"
       (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)" (currentShow)="getShow($event)"
-      [currentDeck]="deck" [totalCards]="totalCards" (buttonShow)="hideButtons()"></app-deck-build>
+      [currentDeck]="deck" [totalCards]="totalCards" (buttonShow)="hideButtons()" [clearedDeck]="deck" (noCards)="clearDeck()"></app-deck-build>
 
-  <app-saved-decks *ngIf="this.savedShow" #savedDecks (selectedDeck)="getSelectedDeck($event)"></app-saved-decks>
+  <app-saved-decks *ngIf="this.savedShow" #savedDecks (selectedDeck)="getSelectedDeck($event)" ></app-saved-decks>
 </div>
 
   <div style="background-color: dimgray;"  class="row bg-light mt-4 p-4" *ngIf="cards" [hidden]="boolSearchedCards == false">

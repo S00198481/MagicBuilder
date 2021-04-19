@@ -18,6 +18,9 @@ export class DeckBuildComponent implements OnInit {
   @Input() currentDeck:JSON; 
   @Input() totalCards:number;
 
+  @Output() clearedDeck = new EventEmitter<JSON>();
+  @Output() noCards = new EventEmitter<number>();
+
   constructor(private _magicService:MagicApiService, private _databaseService:DatabaseServiceService) {
     
   }
@@ -31,14 +34,11 @@ export class DeckBuildComponent implements OnInit {
 
   applyColour(event) {
     var target = event.target;
-    console.log(target.value);
     this.chosenColour.emit(target.value);
-    console.log(this.currentDeck);
   }
 
   applyCmc(event) {
     var target = event.target;
-    console.log(target.value);
     this.chosenCmc.emit(target.value);
   }
 
@@ -59,9 +59,15 @@ export class DeckBuildComponent implements OnInit {
     window.alert("Deck Saved Successfully!")
   }
 
+  clearDeck() {
+    this.clearedDeck.emit(null);
+    this.noCards.emit(0);
+    var totalCards = 24;
+    var text = document.getElementById("cardNumberText");
+    text.textContent = "Number of Cards in Deck = " + totalCards + "/60";
+  }
+
   hideBuild(showBuild:boolean) {
     this.show = showBuild;
-    console.log(this.show);
-    console.log(showBuild);
   }
 }
