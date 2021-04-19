@@ -13,16 +13,17 @@
     </div>
   </form>
 
-<div class="container row">
+<div class="container d-flex justify-content-between">
   <div class="col-6">
     <div class="float-left .menuButton">
-    <button class="btn btn-warning" (click)="show = !show" (click)="hideSaved()">{{show ? 'Hide' : 'Build A
+    <button class="btn btn-warning divButton" (click)="show = !show" (click)="hideSaved()">{{show ? 'Hide' : 'Build A
       Deck'}}</button>
     </div>
   </div>
-  <div class="col-6">
+  <div class="col-6
+  ">
     <div class="float-right .menuButton">
-    <button class="btn btn-warning" (click)="savedShow = !savedShow" (click)="hideBuild()" id="#saveBtn"  (click)="hideSearchedCards()" (click)="showSavedCards()" (click)="cards=null" (click)="savedCards=null">{{savedShow ? 'Hide' : 'View Saved Decks'}}</button>
+    <button class="btn btn-warning divButton" id="rightButton" (click)="savedShow = !savedShow" (click)="hideBuild()" id="#saveBtn"  (click)="hideSearchedCards()" (click)="showSavedCards()" (click)="cards=null" (click)="savedCards=null">{{savedShow ? 'Hide' : 'View Saved Decks'}}</button>
     </div>
   </div>
 </div>
