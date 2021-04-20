@@ -49,7 +49,7 @@ export class AppComponent {
       );
     }
     else if (this.colour == "any" && this.cmc != 0) {
-      this._magicService.getCards(cardName, "", 0).subscribe(
+      this._magicService.getCards(cardName, "", this.cmc).subscribe(
         cards => {
           this.cards = cards;
         },
@@ -77,6 +77,7 @@ export class AppComponent {
   }
 
   getCmc(chosenCmc:number) {
+    console.log("in cmc 2")
     this.cmc=chosenCmc;
   }
   

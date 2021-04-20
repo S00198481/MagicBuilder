@@ -1,6 +1,6 @@
 @media only screen and (max-width: 576px) {
     .divButton {
-      width: 200px; 
+      width: 100px; 
     }
     .card {
         justify-content: center;
@@ -13,6 +13,11 @@
     .card {
         justify-content: center;
     }
+}
+
+#header {
+    font-family: 'Papyrus', fantasy, serif;
+    font-weight: 100;
 }
 
 #searchBar {

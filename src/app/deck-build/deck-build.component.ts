@@ -38,6 +38,7 @@ export class DeckBuildComponent implements OnInit {
   }
 
   applyCmc(event) {
+    console.log("in cmc")
     var target = event.target;
     this.chosenCmc.emit(target.value);
   }
