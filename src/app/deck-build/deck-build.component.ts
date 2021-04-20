@@ -31,6 +31,7 @@ export class DeckBuildComponent implements OnInit {
   colour:string;
   cmc:number;
   deckFull:boolean;
+  alertHide:boolean = true;
 
   applyColour(event) {
     var target = event.target;
@@ -57,7 +58,7 @@ export class DeckBuildComponent implements OnInit {
     let deckNameInput = document.getElementById("deckName") as HTMLInputElement;
     let deckName = deckNameInput.value;
     this._databaseService.uploadDeck(this.currentDeck, deckName);
-    window.alert("Deck Saved Successfully!")
+    this.alertHide = false;
   }
 
   clearDeck() {

@@ -18,6 +18,8 @@ export class SavedDecksComponent implements OnInit {
   @Input() placement?: string;
   @Input() target: HTMLElement;
 
+  alertHide:boolean = true;
+
   private popper:Popper;
   private readonly defaultConfig: PopperOptions = {
     placement: 'top',
@@ -49,8 +51,8 @@ export class SavedDecksComponent implements OnInit {
       }
       let noOfDecks = Object.keys(this.savedDecks).length;
       for (let i = 0; i < noOfDecks; i++) {
-        let option = document.createElement("a");
-        option.text = this.savedDecks[i].deckName;
+        let option = document.createElement("button");
+        option.textContent = this.savedDecks[i].deckName;
         option.classList.add("dropdown-item")
         option.addEventListener('click', (e) => {
           this.loadSelectedDeck(this.savedDecks[i]);
@@ -74,9 +76,9 @@ export class SavedDecksComponent implements OnInit {
         dropdown.removeChild(dropdown.firstChild);
         }
       this.selectedDeck.emit(null);
-      window.alert("Deck deleted successfully!")
       } catch(err:any) {
         console.log("Error" + err);
       }
+    this.alertHide = true;
   }
 }

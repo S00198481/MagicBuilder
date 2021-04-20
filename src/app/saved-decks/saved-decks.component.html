@@ -1,13 +1,13 @@
-<div class="mx-auto bg-light clearfix settingsMenu rounded">
+<div class="mx-auto clearfix settingsMenu rounded">
     <div class="row">
         <br>
-        <p class="mx-auto">Please choose a saved deck from the dropdown!</p>
+        <p class="mx-auto">Please use the dropdown below to select a saved deck of cards from the database:</p>
     </div>
     <div class="row">
         <div class="align-bottom mx-auto">
             <div class="form-inline mt-4 justify-content-center">
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Please select a deck to view
                     </button>
                     <div id="dropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -16,5 +16,23 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-danger float-left" (click)="deleteDeck()">Delete Selected Deck</button>
+    <div class="row">
+    <button class="btn btn-danger float-left mt-2" (click)="alertHide=false">Delete Selected Deck</button>
+    </div>
+    <div class="row">
+        <div class="alert alert-warning alert-dismissible fade show mx-auto border border-dark" role="alert" [hidden]="alertHide==true">
+            <strong>WARNING</strong> Are you sure you want to delete this deck? <strong>THIS CANNOT BE UNDONE</strong>
+            <button type="button" class="close" (click)="alertHide=true">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="row mt-2">
+                <div class="col-6 row">
+                    <button class="mx-auto btn btn-danger" (click)="deleteDeck()">Yes, delete!</button>
+                </div>
+                <div class="col-6 row">
+                    <button class="mx-auto btn btn-warning" (click)="alertHide=true">No, cancel</button>
+                </div>
+            </div>
+          </div>
+    </div>
 </div>

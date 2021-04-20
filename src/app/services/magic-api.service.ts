@@ -15,7 +15,6 @@ export class MagicApiService {
   cmc:number;
 
   getCards(cardName, colour, cmc): Observable<JSON> {
-    //I NEED TO MAKE THIS METHOD KNOW HOW TO REQUEST COLOUR AND NO CMC, NO COLOUR AND CMC, COLOUR AND CMC
     if (colour == "any" && cmc == 0) {
       return this._http.get<JSON>(this._siteURL + cardName)
         .pipe(

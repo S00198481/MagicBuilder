@@ -27,7 +27,10 @@ export class AppComponent {
 
 
   constructor(private _magicService:MagicApiService, private _deckBuild:DeckBuildComponent) {
-    document.body.style.background = 'darkslategray';
+    document.body.style.backgroundImage = "linear-gradient(to bottom right, black, darkslategray)";
+    document.body.style.height= "100vh";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundAttachment = "fixed";
    }
 
   getCards(cardName:string):boolean {

@@ -1,15 +1,14 @@
-
-<div  class="mx-auto bg-light clearfix settingsMenu rounded" id=#buildDiv>
+<div class="mx-auto clearfix settingsMenu rounded" id=#buildDiv>
     <div class="row">
         <br>
         <p class="mx-auto">Please customise your deck using the settings below and use the search bar to find cards!</p>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <div id="#colour">
-                <h2>Deck Colour:</h2>
-
-                <form name="#colour" (change)="applyColour($event)">
+            <div id="colour">
+                <h2>Card Colour:</h2>
+                <p><em>Please select the colour of mana to filter with below:</em></p>
+                <form name="colour" (change)="applyColour($event)">
                     <input type="radio" value="any" name="colour" ngModel checked> Any
                     <input type="radio" value="white" name="colour" ngModel> White
                     <input type="radio" value="black" name="colour" ngModel> Black
@@ -20,12 +19,11 @@
             </div>
         </div>
 
-
-        <div class="col-md-6">
-            <div id=#cmc>
-                <h2>Combined Mana Cost:</h2>
-
-                <form name="#cmc" (change)="applyCmc($event)">
+        <div class="col-md-6" >
+            <div id="cmc" >
+                <h2 id="cmcCol">Combined Mana Cost:</h2>
+                <p><em>Please select the combined mana cost to filter with below:</em></p>
+                <form name="cmc" (change)="applyCmc($event)">
                     <input type="radio" value="0" name="cmc" ngModel checked> Any
                     <input type="radio" value="1" name="cmc" ngModel> 1
                     <input type="radio" value="2" name="cmc" ngModel> 2
@@ -37,16 +35,26 @@
             </div>
         </div>
     </div>
-
-    <br><br><br>
-    <div class="row">
+    <div class="row mt-4">
         <div class="align-bottom mx-auto">
-            <p id="cardNumberText">Number of Cards in Deck = 24/60</p>
+            <strong><p id="cardNumberText">Number of Cards in Deck = 24/60</p></strong>
             <div class="form-inline mt-4 justify-content-center">
-                <input type='text' name="deckName" id='deckName' class="form-control" #deckname placeholder="Enter Deck Name">
+                <input type='text' name="deckName" id='deckName' class="form-control" #deckname
+                    placeholder="Enter Deck Name">
                 <button type="submit" class="btn btn-success" (click)="uploadDeck()">Save Deck</button>
             </div>
         </div>
     </div>
-    <button class="btn btn-danger float-left" (click)="clearDeck()">New Deck</button>
+    <div class="row">
+        <button class="btn btn-danger float-left" (click)="clearDeck()">New Deck</button>
+    </div>
+    <div class="row">
+        <div class="alert alert-success alert-dismissible fade show mx-auto border border-dark" role="alert"
+            [hidden]="alertHide==true">
+            <strong>SUCCESS</strong> Deck saved to database.
+            <button type="button" class="close" (click)="alertHide=true">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
 </div>
