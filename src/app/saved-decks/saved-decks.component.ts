@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MagicApiService } from '../services/magic-api.service'
 import { DatabaseServiceService } from '../services/database-service.service'
 import { Deck } from '../deck-interface';
+import  Popper, { PopperOptions }  from 'popper.js';
+import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-saved-decks',
@@ -11,47 +13,66 @@ import { Deck } from '../deck-interface';
 export class SavedDecksComponent implements OnInit {
 
   @Output() selectedDeck = new EventEmitter<Deck>();
+  selectedDeckLocal:Deck;
+  @Input() appPopper?: HTMLElement;
+  @Input() placement?: string;
+  @Input() target: HTMLElement;
 
-  constructor(private _magicService:MagicApiService, private _databaseService:DatabaseServiceService) { }
+  private popper:Popper;
+  private readonly defaultConfig: PopperOptions = {
+    placement: 'top',
+    removeOnDestroy: true
+  };
+
+  constructor(private _magicService:MagicApiService, private _databaseService:DatabaseServiceService, private readonly el:ElementRef) { }
   savedDecks:Deck[];
 
   ngOnInit(): void {
-    this._databaseService.getDecks().subscribe(deckData =>
-      { this.savedDecks = deckData
-      let dropdown = document.getElementById("dropdown") as HTMLSelectElement;
-      if (dropdown.options.length != 0)
-      {
-        for(let i=0; i<dropdown.options.length; i++)
-        {
-          dropdown.options[i]=null;
-        }
-      }
-      let noOfDecks = Object.keys(this.savedDecks).length;
-      for(let i=0; i<noOfDecks; i++) {
-        let option = document.createElement("option");
-        option.text = this.savedDecks[i].deckName;
-        option.value = JSON.stringify(this.savedDecks[i].deck);
-        dropdown.add(option);
-      }});
+    this.LoadAllDecks();
 
-    
+    const reference = this.appPopper ? this.appPopper : this.el.nativeElement;
+  }
+  ngOnDestroy(): void {
+    if (!this.popper) {
+      return;
+    }
+    this.popper.destroy();
   }
 
-  loadSelectedDeck() {
-    var dropdown = document.getElementById("dropdown") as HTMLSelectElement;
-    var selectedDeck = dropdown.selectedIndex;
-    this.selectedDeck.emit(this.savedDecks[selectedDeck]);
+  LoadAllDecks() {
+    this._databaseService.getDecks().subscribe(deckData => {
+      this.savedDecks = deckData
+      let dropdown = document.getElementById("dropdown");
+      var count = 0; // this will contain the total elements.
+      for (var i = 0; i < dropdown.childNodes.length; i++) {
+        count++;
+      }
+      let noOfDecks = Object.keys(this.savedDecks).length;
+      for (let i = 0; i < noOfDecks; i++) {
+        let option = document.createElement("a");
+        option.text = this.savedDecks[i].deckName;
+        option.classList.add("dropdown-item")
+        option.addEventListener('click', (e) => {
+          this.loadSelectedDeck(this.savedDecks[i]);
+      });
+        dropdown.appendChild(option);
+      }
+    });
+  }
+
+  loadSelectedDeck(selectedDeck:Deck) {
+    this.selectedDeck.emit(selectedDeck);
+    this.selectedDeckLocal = selectedDeck;
   }
 
   deleteDeck() {
-    var dropdown = document.getElementById("dropdown") as HTMLSelectElement;
-    var selectedDeck = dropdown.selectedIndex;
+    var selectedDeck = this.selectedDeckLocal;
     try {
-      this._databaseService.deleteDeck(this.savedDecks[selectedDeck]);
-      for(let i=0; i<dropdown.options.length; i++)
-          {
-            dropdown.options[i]=null;
-          }
+      this._databaseService.deleteDeck(selectedDeck);
+      let dropdown = document.getElementById("dropdown")
+      while (dropdown.firstChild) {
+        dropdown.removeChild(dropdown.firstChild);
+        }
       this.selectedDeck.emit(null);
       window.alert("Deck deleted successfully!")
       } catch(err:any) {

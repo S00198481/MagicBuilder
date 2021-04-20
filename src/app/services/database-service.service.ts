@@ -48,6 +48,7 @@ export class DatabaseServiceService implements OnInit {
   }
 
   deleteDeck(deck: Deck) {
+    console.log(deck);
     var deckTitle = deck.deckName
     this.deckDataCollection.doc(deck.deckName).delete();
   }

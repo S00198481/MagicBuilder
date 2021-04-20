@@ -1,6 +1,6 @@
 @media only screen and (max-width: 576px) {
     .divButton {
-      width: 100px; 
+      width: 200px; 
     }
     .card {
         justify-content: center;
@@ -13,6 +13,15 @@
     .card {
         justify-content: center;
     }
+}
+
+#searchBar {
+    width: 75%;
+}
+#searchBox {
+    border: .5em white;
+    border-style: double;
+    border-radius: 1em;
 }
 
 .btn-circle.btn-xl {

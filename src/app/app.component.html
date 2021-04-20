@@ -7,8 +7,8 @@
   </div>
   
   <form>
-    <div class="form-inline mt-4 justify-content-center">
-      <input type='text' name='cardname' class="form-control" #cardname placeholder="Enter Card Name">
+    <div id="searchBox" class="form-inline mt-4 p-4 justify-content-center">
+      <input type='text' id="searchBar" name='cardname' class="form-control" #cardname placeholder="Enter Card Name">
       <button (click)="getCards(cardname.value)" type="submit" class="btn btn-warning" (click)="showSearchedCards()" (click)="hideSavedCards()">Search</button>
     </div>
   </form>
@@ -16,13 +16,13 @@
 <div class="d-flex justify-content-between">
   <div class="col-6">
     <div class="float-left .menuButton">
-    <button class="btn btn-warning divButton" (click)="show = !show" (click)="hideSaved()">{{show ? 'Hide' : 'Build'}}</button>
+    <button class="btn btn-warning divButton" (click)="show = !show" (click)="hideSaved()">{{show ? 'Hide' : 'Build A New Deck'}}</button>
     </div>
   </div>
   <div class="col-6
   ">
     <div class="float-right .menuButton">
-    <button class="btn btn-warning divButton" id="rightButton" (click)="savedShow = !savedShow" (click)="hideBuild()" id="#saveBtn"  (click)="hideSearchedCards()" (click)="showSavedCards()" (click)="cards=null" (click)="savedCards=null">{{savedShow ? 'Hide' : 'Saved'}}</button>
+    <button class="btn btn-warning divButton" id="rightButton" (click)="savedShow = !savedShow" (click)="hideBuild()" id="#saveBtn"  (click)="hideSearchedCards()" (click)="showSavedCards()" (click)="cards=null" (click)="savedCards=null">{{savedShow ? 'Hide' : 'My Saved Decks'}}</button>
     </div>
   </div>
 </div>
@@ -31,7 +31,7 @@
       (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)" (currentShow)="getShow($event)"
       [currentDeck]="deck" [totalCards]="totalCards" (buttonShow)="hideButtons()" [clearedDeck]="deck" (noCards)="clearDeck()"></app-deck-build>
 
-  <app-saved-decks *ngIf="this.savedShow" #savedDecks (selectedDeck)="getSelectedDeck($event)" ></app-saved-decks>
+  <app-saved-decks *ngIf="this.savedShow" #savedDecks (selectedDeck)="getSelectedDeck($event)" [appPopper]="target" [target]="tooltip"></app-saved-decks>
 </div>
 
   <div class="row mt-4 p-4 bg-light" *ngIf="cards" [hidden]="boolSearchedCards == false">
@@ -51,4 +51,3 @@
       </div>
     </div>
   </div>
-  

@@ -10,13 +10,15 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { SavedDecksComponent } from './saved-decks/saved-decks.component';
+import { PopperDirective } from './popper.directive';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DeckBuildComponent,
-    SavedDecksComponent
+    SavedDecksComponent,
+    PopperDirective
   ],
   imports: [
     BrowserModule,
