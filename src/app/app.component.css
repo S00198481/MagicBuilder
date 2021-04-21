@@ -29,27 +29,41 @@
     border-radius: 1em;*/
     width: 75%;
     margin-bottom: 2em;
-    background-image: linear-gradient(to top, orange, 1%, rgba(255,0,0,0));
-    /*background-image: radial-gradient(ellipse at bottom,white, 10%, rgba(255,0,0,0));*/
+    background-image: linear-gradient(to top, orange, 1%, rgba(255,0,0,0))
+    /*background-image: radial-gradient(ellipse at bottom,orange, 1%, rgba(255,0,0,0));*/
 }
 
-.btn-circle.btn-xl {
-    width: 70px;
-    height: 70px;
-    padding: 10px 16px;
-    border-radius: 35px;
-    font-size: 24px;
-    line-height: 1.33;
+.cardbox {
+    background-image: linear-gradient(white, gray)
+}
+
+.white {
+    color:white;
 }
 
 .btn-circle {
-    width: 30px;
-    height: 30px;
+    width: 3em;
+    height: 3em;
     padding: 6px 0px;
     border-radius: 15px;
     text-align: center;
     font-size: 12px;
     line-height: 1.42857;
+}
+
+.btn-circle-xl {
+    width: 4em;
+    height: 4em;
+    padding: 6px 0px;
+    border-radius: 3em;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
+.btn-circle-xl a {
+    text-decoration: none;
+    color:black;
 }
 
 h1 {

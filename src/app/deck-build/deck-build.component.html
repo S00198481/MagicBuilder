@@ -1,7 +1,17 @@
 <div class="mx-auto clearfix settingsMenu rounded" id=#buildDiv>
     <div class="row">
         <br>
-        <p class="mx-auto">Please customise your deck using the settings below and use the search bar to find cards!</p>
+        <p class="mx-auto"><strong>Use the following filters to help find the perfect cards for your deck!</strong></p>
+    </div>
+    <div class="row">
+        <div class="alert alert-success alert-dismissible fade show mx-auto border border-dark" role="alert">
+            <strong>A Magic: The Gathering deck consists of 60 cards.</strong> <br>Of those 60, 24 are always lands and
+            36 spells of your choice. Each card can appear 4 times, so this means you must choose 9 cards, as your deck
+            will contain 4 copies of each card chosen. Try to choose cards that synergise well together and have a variety of mana costs! You can dismiss this message whenever you're ready to build your first deck.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -19,8 +29,8 @@
             </div>
         </div>
 
-        <div class="col-md-6" >
-            <div id="cmc" >
+        <div class="col-md-6">
+            <div id="cmc">
                 <h2 id="cmcCol">Combined Mana Cost:</h2>
                 <p><em>Please select the combined mana cost to filter with below:</em></p>
                 <form name="cmc" (change)="applyCmc($event)">
@@ -37,7 +47,9 @@
     </div>
     <div class="row mt-4">
         <div class="align-bottom mx-auto">
-            <strong><p id="cardNumberText">Number of Cards in Deck = 24/60</p></strong>
+            <strong>
+                <p id="cardNumberText">Number of Cards in Deck = 24/60</p>
+            </strong>
             <div class="form-inline mt-4 justify-content-center">
                 <input type='text' name="deckName" id='deckName' class="form-control" #deckname
                     placeholder="Enter Deck Name">

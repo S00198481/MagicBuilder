@@ -24,6 +24,7 @@ export class AppComponent {
   boolSavedCards:boolean;
   boolSearchedCards:boolean;
   totalCards:number;
+  selectedDeckName:string;
 
 
   constructor(private _magicService:MagicApiService, private _deckBuild:DeckBuildComponent) {
@@ -104,6 +105,7 @@ export class AppComponent {
     else
     {    
     this.savedCards = selectedDeck.deck;
+    this.selectedDeckName = selectedDeck.deckName;
     }
   }
 
