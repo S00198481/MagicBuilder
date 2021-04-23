@@ -23,14 +23,11 @@
 #searchBar {
     width:75%;
 }
+
 #searchBox {
-    /*border: .25em white;
-    border-style:double;
-    border-radius: 1em;*/
     width: 75%;
     margin-bottom: 2em;
     background-image: linear-gradient(to top, orange, 1%, rgba(255,0,0,0))
-    /*background-image: radial-gradient(ellipse at bottom,orange, 1%, rgba(255,0,0,0));*/
 }
 
 .cardbox {

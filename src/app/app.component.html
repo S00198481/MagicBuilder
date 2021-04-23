@@ -1,53 +1,62 @@
 <div class='container'>
   <div class="row">
     <div class="col-12 mx-auto">
-      <button class="float-right btn btn-warning btn-circle-xl"><a href="https://www.youtube.com/watch?v=RZyXU1L3JXk">Learn Magic</a></button>
+      <button class="float-right btn btn-warning btn-circle-xl"><a
+          href="https://www.youtube.com/watch?v=RZyXU1L3JXk">Learn Magic</a></button>
     </div>
   </div>
   <div class="row">
-    <img class="mx-auto mt-2" width="200px" src="https://png2.cleanpng.com/sh/21b41747a776e62605c8fc34bf115aff/L0KzQYm3VMIxN6ZsfZH0aYP2gLBuTf1ib5poReZxZT3qccXvhgJqdpgyiN5qeXnxd37qggJlNZ5mf9tsLYDyebB7k71kaaMyf9N9aHX1ebBuTcVibGo9fKo7MXG4RYSATsg0QGE9SKcDMUW1RIO3Vsk4QGI1T6s3cH7q/kisspng-magic-the-gathering-playing-card-magic-points-car-gathering-5ad98d821a5537.8380805815242069781079.png">
+    <img class="mx-auto mt-2" width="200px"
+      src="https://png2.cleanpng.com/sh/21b41747a776e62605c8fc34bf115aff/L0KzQYm3VMIxN6ZsfZH0aYP2gLBuTf1ib5poReZxZT3qccXvhgJqdpgyiN5qeXnxd37qggJlNZ5mf9tsLYDyebB7k71kaaMyf9N9aHX1ebBuTcVibGo9fKo7MXG4RYSATsg0QGE9SKcDMUW1RIO3Vsk4QGI1T6s3cH7q/kisspng-magic-the-gathering-playing-card-magic-points-car-gathering-5ad98d821a5537.8380805815242069781079.png">
   </div>
   <div class="row">
     <h1 id="header" class="mx-auto mt-4">Magic Builder</h1>
   </div>
-  
+
   <form>
     <div class="row">
-    <div id="searchBox" class="form-inline mt-4 p-4 justify-content-center mx-auto rounded">
-      <input type='text' id="searchBar" name='cardname' class="form-control" #cardname placeholder="Enter Card Name">
-      <button (click)="getCards(cardname.value)" type="submit" class="btn btn-warning" (click)="showSearchedCards()" (click)="hideSavedCards()">Search</button>
+      <div id="searchBox" class="form-inline mt-4 p-4 justify-content-center mx-auto rounded">
+        <input type='text' id="searchBar" name='cardname' class="form-control" #cardname placeholder="Enter Card Name">
+        <button (click)="getCards(cardname.value)" type="submit" class="btn btn-warning btnSearch" (click)="showSearchedCards()"
+          (click)="hideSavedCards()">Search</button>
+      </div>
     </div>
-  </div>
   </form>
 
-<div class="d-flex justify-content-between">
-  <div class="col-6">
-    <div class="float-left .menuButton">
-    <button class="btn btn-warning divButton" (click)="show = !show" (click)="hideSaved()">{{show ? 'Hide' : 'Build A New Deck'}}</button>
+  <div class="d-flex justify-content-between">
+    <div class="col-6">
+      <div class="float-left .menuButton">
+        <button class="btn btn-warning divButton" (click)="show = !show" (click)="hideSaved()">{{show ? 'Hide' : 'Build
+          A New Deck'}}</button>
+      </div>
     </div>
-  </div>
-  <div class="col-6
+    <div class="col-6
   ">
-    <div class="float-right .menuButton">
-    <button class="btn btn-warning divButton" id="rightButton" (click)="savedShow = !savedShow" (click)="hideBuild()" id="#saveBtn"  (click)="hideSearchedCards()" (click)="showSavedCards()" (click)="cards=null" (click)="savedCards=null">{{savedShow ? 'Hide' : 'My Saved Decks'}}</button>
+      <div class="float-right .menuButton">
+        <button class="btn btn-warning divButton" id="rightButton" (click)="savedShow = !savedShow"
+          (click)="hideBuild()" id="#saveBtn" (click)="hideSearchedCards()" (click)="showSavedCards()"
+          (click)="cards=null" (click)="savedCards=null">{{savedShow ? 'Hide' : 'My Saved Decks'}}</button>
+      </div>
     </div>
   </div>
-</div>
-<div>
-  <app-deck-build *ngIf="this.show" #deckbuild (chosenColour)="getColour($event)" (chosenColour)="getCards(cardname.value)"
-      (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)" (currentShow)="getShow($event)"
-      [currentDeck]="deck" [totalCards]="totalCards" (buttonShow)="hideButtons()" [clearedDeck]="deck" (noCards)="clearDeck()"></app-deck-build>
+  <div>
+    <app-deck-build *ngIf="this.show" #deckbuild (chosenColour)="getColour($event)"
+      (chosenColour)="getCards(cardname.value)" (chosenCmc)="getCmc($event)" (chosenCmc)="getCards(cardname.value)"
+      (currentShow)="getShow($event)" [currentDeck]="deck" [totalCards]="totalCards" (buttonShow)="hideButtons()"
+      [clearedDeck]="deck" (noCards)="clearDeck()"></app-deck-build>
 
-  <app-saved-decks *ngIf="this.savedShow" #savedDecks (selectedDeck)="getSelectedDeck($event)" [appPopper]="target" [target]="tooltip"></app-saved-decks>
-</div>
+    <app-saved-decks *ngIf="this.savedShow" #savedDecks (selectedDeck)="getSelectedDeck($event)" [appPopper]="target"
+      [target]="tooltip"></app-saved-decks>
+  </div>
 
   <div class="row mt-4 p-4 rounded cardbox" *ngIf="cards" [hidden]="boolSearchedCards == false">
     <div class="col-lg-3 mt-4" *ngFor="let card of this.cards.cards" [cards]="cards" [hidden]="card.imageUrl==null">
       <div class="row">
-      <img class="mx-auto mt-3 mb-3" src="{{card.imageUrl}}" width="200px">
+        <img class="mx-auto mt-3 mb-3" src="{{card.imageUrl}}" width="200px">
       </div>
       <div>
-      <button *ngIf="this.show" [hidden]="buttonShow==false" type="button" class="btn btn-success btn-circle mr-0" (click)="saveCard(card)" (click)="checkDeckSize()" (click)="hideButtons()">Add</button>
+        <button *ngIf="this.show" [hidden]="buttonShow==false" type="button" class="btn btn-success btn-circle mr-0"
+          (click)="saveCard(card)" (click)="checkDeckSize()" (click)="hideButtons()">Add</button>
       </div>
     </div>
   </div>
@@ -57,22 +66,25 @@
       <h4 class="mx-auto">Deck Name: {{selectedDeckName}}</h4>
     </div>
 
-    <div class="col-xl-3 mt-4" *ngFor="let card of this.savedCards" [savedCards]="savedCards" [hidden]="card.imageUrl==null">
+    <div class="col-xl-3 mt-4" *ngFor="let card of this.savedCards" [savedCards]="savedCards"
+      [hidden]="card.imageUrl==null">
       <div class="row">
-      <img class="mx-auto mt-3 mb-3" src="{{card.imageUrl}}" width="200px">
+        <img class="mx-auto mt-3 mb-3" src="{{card.imageUrl}}" width="200px">
       </div>
       <div>
-      <p class="float-right"><strong>X4</strong></p>
+        <p class="float-right"><strong>X4</strong></p>
       </div>
     </div>
 
-    <div class="col-xl-3 mt-4" >
+    <div class="col-xl-3 mt-4">
       <div class="row">
-      <img class="mx-auto mt-3 mb-3" src="https://cdn.shopify.com/s/files/1/1633/7907/products/basic-land_700x700.png?v=1571446528"  width="200" height="278">
-    </div>
+        <img class="mx-auto mt-3 mb-3"
+          src="https://cdn.shopify.com/s/files/1/1633/7907/products/basic-land_700x700.png?v=1571446528" width="200"
+          height="278">
+      </div>
       <div>
-      <p class="float-right"><strong>Lands X24</strong></p>
+        <p class="float-right"><strong>Lands X24</strong></p>
       </div>
     </div>
-    
+
   </div>
